@@ -1,0 +1,31 @@
+// Sound Sensor Controlled Mini Fan, LED, and Buzzer using Arduino
+
+const int soundPin = 2;      // Sound Sensor D0 connected to Digital Pin 2
+const int motorPin = 3;      // Motor controlled via transistor connected to Digital Pin 3
+const int ledPin = 4;        // LED connected to Digital Pin 4
+const int buzzerPin = 5;     // Buzzer connected to Digital Pin 5
+
+void setup() {
+  pinMode(soundPin, INPUT);      // Sound sensor input
+  pinMode(motorPin, OUTPUT);     // Motor output
+  pinMode(ledPin, OUTPUT);       // LED output
+  pinMode(buzzerPin, OUTPUT);    // Buzzer output
+}
+
+void loop() {
+  int soundState = digitalRead(soundPin);  // Read sound sensor digital output
+
+  if (soundState == HIGH) {
+    // Turn ON all outputs
+    digitalWrite(motorPin, HIGH);
+    digitalWrite(ledPin, HIGH);
+    digitalWrite(buzzerPin, HIGH);
+    
+    delay(3000);  // Keep them ON for 3 seconds
+
+    // Turn OFF all outputs
+    digitalWrite(motorPin, LOW);
+    digitalWrite(ledPin, LOW);
+    digitalWrite(buzzerPin, LOW);
+  }
+}
